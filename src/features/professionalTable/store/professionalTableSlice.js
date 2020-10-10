@@ -1,7 +1,7 @@
 import fetchProfessionals from "../api/fetchProfessionals";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getProfessionals = createAsyncThunk(
+const getProfessionals = createAsyncThunk(
   "fetchProfessionals",
   async () => fetchProfessionals()
 );
@@ -25,25 +25,31 @@ const professionalTableSlice = createSlice({
       state.perPage = action.payload;
     },
   },
-  extraReducers: (builder) => {
-    builder.addCase(getProfessionals.pending, (state) => {
+  extraReducers: {
+    [getProfessionals.pending](state) {
       state.loading = true;
-    });
-    builder.addCase(getProfessionals.rejected, (state, action) => {
+    },
+    [getProfessionals.rejected](state, action) {
       state.loading = false;
       state.error = action.error;
-    });
-    builder.addCase(getProfessionals.fulfilled, (state, action) => {
+    },
+    [getProfessionals.fulfilled](state, action) {
       state.loading = false;
       state.data = action.payload;
-    });
-  },
+    }
+  }
 });
 
+// selectors
 export const selectData = (state) => state.professionalTable.data;
 export const selectPage = (state) => state.professionalTable.page;
 export const selectPerPage = (state) => state.professionalTable.perPage;
 
+// actions
 export const { setPage, setPerPage } = professionalTableSlice.actions;
 
+// thunks
+export { getProfessionals };
+
+// reducer
 export default professionalTableSlice;
