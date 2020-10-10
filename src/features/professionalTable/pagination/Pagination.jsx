@@ -13,7 +13,7 @@ const Pagination = ({ page, perPage, count, onChangePage, onChangePerPage }) => 
       <span className="pagination__page-info">{`page: ${page}`}</span>
       <span className="pagination__page-info">{`perPage: ${perPage}`}</span>
       {isNext && <button className="pagination__page-button" onClick={() => onChangePage(page + 1)}>next</button>}
-      <input onChange={(e) => onChangePerPage(e.target.value)} />
+      <input onChange={(e) => onChangePerPage(e.target.value)} type="number" min={1} max={100} value={perPage}/>
     </div>
   );
 };

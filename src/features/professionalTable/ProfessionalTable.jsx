@@ -25,7 +25,7 @@ const ProfessionalTableSimple = () => {
     dispatch(setPage(page));
   };
   const onChangePerPage = (perPage) => {
-    dispatch(setPerPage(perPage));
+    perPage > 0 && dispatch(setPerPage(perPage));
   };
 
   useEffect(() => {
