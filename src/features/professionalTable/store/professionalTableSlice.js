@@ -9,13 +9,22 @@ export const getProfessionals = createAsyncThunk(
 const initialState = {
   loading: false,
   error: null,
-  data: []
+  data: [],
+  page: 1,
+  perPage: 5
 };
 
 const professionalTableSlice = createSlice({
   name: "professionalTable",
   initialState,
-  reducers: {},
+  reducers: {
+    setPage(state, action) {
+      state.page = action.payload;
+    },
+    setPerPage(state, action) {
+      state.perPage = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getProfessionals.pending, (state) => {
       state.loading = true;
@@ -32,5 +41,9 @@ const professionalTableSlice = createSlice({
 });
 
 export const selectData = (state) => state.professionalTable.data;
+export const selectPage = (state) => state.professionalTable.page;
+export const selectPerPage = (state) => state.professionalTable.perPage;
+
+export const { setPage, setPerPage } = professionalTableSlice.actions;
 
 export default professionalTableSlice;

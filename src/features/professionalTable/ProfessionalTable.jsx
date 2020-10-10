@@ -1,19 +1,32 @@
 import React, { useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectData } from "./store/professionalTableSlice.js";
-import { getProfessionals } from "./store/professionalTableSlice.js";
+import { selectData, selectPage, selectPerPage } from "./store/professionalTableSlice.js";
+import { getProfessionals, setPage, setPerPage } from "./store/professionalTableSlice.js";
 import transformProfessionals from "./helpers/transformProfessionals";
+import Pagination from "./pagination/Pagination.jsx";
 import "./styles.css";
 
 const ProfessionalTableSimple = () => {
   const dispatch = useDispatch();
   const data = useSelector(selectData);
+  const page = useSelector(selectPage);
+  const perPage = useSelector(selectPerPage);
+
+  const startIndex = (page - 1) * perPage;
+  const endIndex = page * perPage;
 
   const professionals = useMemo(
     () =>
-      transformProfessionals(data).slice(0, 5),
-    [data]
+      transformProfessionals(data).slice(startIndex, endIndex),
+    [data, startIndex, endIndex]
   );
+
+  const onChangePage = (page) => {
+    dispatch(setPage(page));
+  };
+  const onChangePerPage = (perPage) => {
+    dispatch(setPerPage(perPage));
+  };
 
   useEffect(() => {
     dispatch(getProfessionals());
@@ -51,6 +64,15 @@ const ProfessionalTableSimple = () => {
         </tbody>
       </table>
       </div>
+
+      <Pagination
+        page={page}
+        perPage={perPage}
+        count={data.length}
+        onChangePage={onChangePage}
+        onChangePerPage={onChangePerPage}
+      />
+
     </div>
   );
 };

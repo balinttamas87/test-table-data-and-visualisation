@@ -1,0 +1,30 @@
+.pagination {
+    background-color: #007cba;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+}
+
+input {
+    line-height: 44px;
+    max-width: 50px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.pagination__page-button {
+    background-color: #163c79;
+    color: #ffffff;
+    padding: 15px;
+    order: 1;
+    border-radius: 5px;
+    font-weight: bold;
+    min-width: 102px;
+    font-size: 16px;
+}
+
+.pagination__page-info {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+}
