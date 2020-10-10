@@ -1,0 +1,32 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table td,
+table th {
+  border: 1px solid #ddd;
+  padding: 0.5rem;
+  height: 55px;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+
+table th {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  text-align: left;
+  background-color: #163c79;
+  background-color: #007cba;
+  color: white;
+}
+
+.table-wrapper {
+  min-height: 435px;
+}
