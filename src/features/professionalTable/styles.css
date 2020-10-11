@@ -30,3 +30,7 @@ table th {
 .table-wrapper {
   min-height: 435px;
 }
+
+.sortable-column {
+  cursor: pointer;
+}

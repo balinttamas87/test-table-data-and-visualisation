@@ -1,4 +1,8 @@
 const transformProfessionals = (data) => {
+    /* 
+        could transform the object keys dynamically
+        using Regex to remove the underscore and apply camelCase
+    */
     return data.reduce((acc, professional) => {
         const transformedProfessional = {
             id: professional.id,

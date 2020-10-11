@@ -1,14 +1,22 @@
 import React, { useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectData, selectPage, selectPerPage } from "./store/professionalTableSlice.js";
-import { getProfessionals, setPage, setPerPage } from "./store/professionalTableSlice.js";
-import transformProfessionals from "./helpers/transformProfessionals";
+import {
+  selectProfessionals,
+  selectPage,
+  selectPerPage,
+} from "./store/professionalTableSlice.js";
+import {
+  getProfessionals,
+  setPage,
+  setPerPage,
+  sortBy,
+} from "./store/professionalTableSlice.js";
 import Pagination from "./pagination/Pagination.jsx";
 import "./styles.css";
 
 const ProfessionalTableSimple = () => {
   const dispatch = useDispatch();
-  const data = useSelector(selectData);
+  const professionalData = useSelector(selectProfessionals);
   const page = useSelector(selectPage);
   const perPage = useSelector(selectPerPage);
 
@@ -16,9 +24,8 @@ const ProfessionalTableSimple = () => {
   const endIndex = page * perPage;
 
   const professionals = useMemo(
-    () =>
-      transformProfessionals(data).slice(startIndex, endIndex),
-    [data, startIndex, endIndex]
+    () => professionalData.slice(startIndex, endIndex),
+    [professionalData, startIndex, endIndex]
   );
 
   const onChangePage = (page) => {
@@ -35,44 +42,58 @@ const ProfessionalTableSimple = () => {
   return (
     <div>
       <div className="table-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>First name</th>
-            <th>Last name</th>
-            <th>Date of birth</th>
-            <th>Industry</th>
-            <th>Salary</th>
-            <th>Years of experience</th>
-          </tr>
-        </thead>
-        <tbody>
-          {professionals.map((professional) => {
-            return (
-              <tr key={professional.id}>
-                <td>{professional.id}</td>
-                <td>{professional.firstName}</td>
-                <td>{professional.lastName}</td>
-                <td>{professional.dateOfBirth}</td>
-                <td>{professional.industry}</td>
-                <td>{professional.salary}</td>
-                <td>{professional.yearsOfExperience}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+        <table>
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>First name</th>
+              <th>Last name</th>
+              <th
+                onClick={() => dispatch(sortBy({ field: "dateOfBirth" }))}
+                className="sortable-column"
+              >
+                Date of birth
+              </th>
+              <th
+                onClick={() => dispatch(sortBy({ field: "industry" }))}
+                className="sortable-column"
+              >
+                Industry
+              </th>
+              <th
+                onClick={() => dispatch(sortBy({ field: "salary" }))}
+                className="sortable-column"
+              >
+                Salary
+              </th>
+              <th>Years of experience</th>
+            </tr>
+          </thead>
+          <tbody>
+            {professionals.map((professional) => {
+              return (
+                <tr key={professional.id}>
+                  <td>{professional.id}</td>
+                  <td>{professional.firstName}</td>
+                  <td>{professional.lastName}</td>
+                  <td>{professional.dateOfBirth}</td>
+                  <td>{professional.industry}</td>
+                  <td>{professional.salary}</td>
+                  <td>{professional.yearsOfExperience}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
 
       <Pagination
         page={page}
         perPage={perPage}
-        count={data.length}
+        count={professionalData.length}
         onChangePage={onChangePage}
         onChangePerPage={onChangePerPage}
       />
-
     </div>
   );
 };
