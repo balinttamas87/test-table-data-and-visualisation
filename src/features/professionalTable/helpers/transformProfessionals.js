@@ -6,8 +6,8 @@ const transformProfessionals = (data) => {
     return data.reduce((acc, professional) => {
         const transformedProfessional = {
             id: professional.id,
-            firstName: professional.first_name,
-            lastName: professional.last_name,
+            firstName: professional.first_name || "",
+            lastName: professional.last_name || "",
             dateOfBirth: professional.date_of_birth,
             industry: professional.industry,
             salary: professional.salary,
