@@ -49,7 +49,7 @@ const getProfessionals = createAsyncThunk(
   async () => fetchProfessionals()
 );
 
-const initialState = {
+export const initialState = {
   loading: false,
   error: null,
   professionals: [],
