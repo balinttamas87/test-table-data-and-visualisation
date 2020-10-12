@@ -1,3 +1,57 @@
+## To start the project
+
+Clone this repo, `cd` into it and
+run 
+### `yarn`
+from the terminal to install dependencies listed in package.json.
+
+Once all packages are installed you can run 
+### `yarn start`
+
+The app will run on the following url: [http://localhost:3000](http://localhost:3000).
+
+To run the tests run
+### `yarn test --verbose`
+(you might need to hit the letter "a" to run all tests when prompted)
+
+## The following has been built / done for this technical test:
+In the following video you can watch the app in action and all its features
+
+https://drive.google.com/file/d/1B0-SD_y1rWydML0aJ6pGiFi3Mh3nC8_D/view?usp=sharing 
+
+- Display supplied JSON data in a table
+- Client-side pagination with "next" and "previous" buttons and "per page" (up to 100) input. If there is no previous or next page the buttons are disabled respectively
+- Sorting by date of birth, industry and salary when appropriate table header cell is clicked. The sorting direction changes with every click.
+
+- Display data as a set of charts (bar chart to show relationship between salary and experience, bar and pie charts for salary and years of experience comparison)
+- Update all charts when sorting or navigating within the table
+- Some tests for reducers and pagination component (Jest + react-testing-library)
+
+## Things that I have experimented with for the first time
+- redux-toolkit
+- organising code into features folder instead of components and containers folders.
+- chart.js via react-chartjs-2 library
+
+
+## Some things that could be improved
+- When sorting a new column by clicking on the table header cell we should always start sorting by the same direction (ascending or descending)
+- Add ability to clear sorting and filtering
+- When sorting empty values should be at the end of the list instead of in the beginning
+- Add "up" and "down" arrows to table column header cells to indicate sorting direction
+- Split ProfessionalTable component into a container to handle logic and smaller components to render UI
+- Move Chart out to be a separate feature from ProfessionalTable
+- Could find a better way to compose Chart components 
+- Responsive mobile first UI
+- Table columns to be fixed-width so they don’t jump
+- Indicate loading of the data / table via skeleton UI
+- Create my own React components / wrappers for chart.js instead of using a library which does it for me.
+- More thorough testing
+- Remove legends or position them in a different way to make sure they don’t squash the pie chart when there is too much data or too many legends
+
+---
+The project has been bootstrapped with create-react-app. Please see below their readme file
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
