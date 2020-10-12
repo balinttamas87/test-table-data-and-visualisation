@@ -4,14 +4,19 @@ import {
   selectProfessionals,
   selectPage,
   selectPerPage,
-} from "./store/professionalTableSlice.js";
+} from "./store/professionalTableSlice";
 import {
   getProfessionals,
   setPage,
   setPerPage,
   sortBy,
-} from "./store/professionalTableSlice.js";
+} from "./store/professionalTableSlice";
 import Pagination from "./pagination/Pagination.jsx";
+import ExperienceBarChart from "./charts/ExperienceBarChart";
+import SalaryBarChart from "./charts/SalaryBarChart";
+import ExperiencePieChart from "./charts/ExperiencePieChart";
+import SalaryPieChart from "./charts/SalaryPieChart";
+import getRandomColor from "./helpers/getRandomColor";
 import "./styles.css";
 
 const ProfessionalTableSimple = () => {
@@ -94,6 +99,31 @@ const ProfessionalTableSimple = () => {
         onChangePage={onChangePage}
         onChangePerPage={onChangePerPage}
       />
+
+      <ExperienceBarChart
+        labels={professionals.map(p => `${p.firstName} ${p.lastName}`)}
+        data={professionals.map(p => p.yearsOfExperience)}
+        backgroundColors={professionals.map(() => getRandomColor())}
+      />
+
+      <SalaryBarChart
+        labels={professionals.map(p => `${p.firstName} ${p.lastName}`)}
+        data={professionals.map(p => p.salary)}
+        backgroundColors={professionals.map(() => getRandomColor())}
+      />
+
+      <ExperiencePieChart
+        labels={professionals.map(p => `${p.firstName} ${p.lastName}`)}
+        data={professionals.map(p => p.yearsOfExperience)}
+        backgroundColors={professionals.map(() => getRandomColor())}
+      />
+
+      <SalaryPieChart
+        labels={professionals.map(p => `${p.firstName} ${p.lastName}`)}
+        data={professionals.map(p => p.salary)}
+        backgroundColors={professionals.map(() => getRandomColor())}
+      />
+
     </div>
   );
 };
