@@ -100,6 +100,14 @@ const ProfessionalTableSimple = () => {
 
       <BarChart
         labels={professionals.map((p) => `${p.firstName} ${p.lastName}`)}
+        title="Relation between years of experience and salary"
+        data={professionals.map((p) => p.yearsOfExperience)}
+        secondaryData={professionals.map((p) => (p.salary / 10000))}
+        backgroundColors={professionals.map(() => getRandomColor())}
+      />
+
+      <BarChart
+        labels={professionals.map((p) => `${p.firstName} ${p.lastName}`)}
         title="Years of Experience"
         data={professionals.map((p) => p.yearsOfExperience)}
         backgroundColors={professionals.map(() => getRandomColor())}
