@@ -12,10 +12,8 @@ import {
   sortBy,
 } from "./store/professionalTableSlice";
 import Pagination from "./pagination/Pagination.jsx";
-import ExperienceBarChart from "./charts/ExperienceBarChart";
-import SalaryBarChart from "./charts/SalaryBarChart";
-import ExperiencePieChart from "./charts/ExperiencePieChart";
-import SalaryPieChart from "./charts/SalaryPieChart";
+import BarChart from "./charts/BarChart";
+import PieChart from "./charts/PieChart";
 import getRandomColor from "./helpers/getRandomColor";
 import "./styles.css";
 
@@ -24,6 +22,10 @@ const ProfessionalTableSimple = () => {
   const professionalData = useSelector(selectProfessionals);
   const page = useSelector(selectPage);
   const perPage = useSelector(selectPerPage);
+
+  useEffect(() => {
+    dispatch(getProfessionals());
+  }, []);
 
   const startIndex = (page - 1) * perPage;
   const endIndex = page * perPage;
@@ -39,10 +41,6 @@ const ProfessionalTableSimple = () => {
   const onChangePerPage = (perPage) => {
     perPage > 0 && dispatch(setPerPage(perPage));
   };
-
-  useEffect(() => {
-    dispatch(getProfessionals());
-  }, []);
 
   return (
     <div>
@@ -100,29 +98,34 @@ const ProfessionalTableSimple = () => {
         onChangePerPage={onChangePerPage}
       />
 
-      <ExperienceBarChart
+      <BarChart
         labels={professionals.map(p => `${p.firstName} ${p.lastName}`)}
+        title="Years of Experience"
         data={professionals.map(p => p.yearsOfExperience)}
         backgroundColors={professionals.map(() => getRandomColor())}
       />
 
-      <SalaryBarChart
+      <BarChart
         labels={professionals.map(p => `${p.firstName} ${p.lastName}`)}
+        title="Salary"
         data={professionals.map(p => p.salary)}
         backgroundColors={professionals.map(() => getRandomColor())}
       />
 
-      <ExperiencePieChart
+      <PieChart
         labels={professionals.map(p => `${p.firstName} ${p.lastName}`)}
+        title="Years of Experience"
         data={professionals.map(p => p.yearsOfExperience)}
         backgroundColors={professionals.map(() => getRandomColor())}
       />
 
-      <SalaryPieChart
+      <PieChart
         labels={professionals.map(p => `${p.firstName} ${p.lastName}`)}
+        title="Salary"
         data={professionals.map(p => p.salary)}
         backgroundColors={professionals.map(() => getRandomColor())}
       />
+
 
     </div>
   );
