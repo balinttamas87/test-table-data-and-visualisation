@@ -88,44 +88,42 @@ const ProfessionalTableSimple = () => {
             })}
           </tbody>
         </table>
-          <Pagination
-            page={page}
-            perPage={perPage}
-            count={professionalData.length}
-            onChangePage={onChangePage}
-            onChangePerPage={onChangePerPage}
-          />
+        <Pagination
+          page={page}
+          perPage={perPage}
+          count={professionalData.length}
+          onChangePage={onChangePage}
+          onChangePerPage={onChangePerPage}
+        />
       </div>
 
       <BarChart
-        labels={professionals.map(p => `${p.firstName} ${p.lastName}`)}
+        labels={professionals.map((p) => `${p.firstName} ${p.lastName}`)}
         title="Years of Experience"
-        data={professionals.map(p => p.yearsOfExperience)}
+        data={professionals.map((p) => p.yearsOfExperience)}
         backgroundColors={professionals.map(() => getRandomColor())}
       />
 
       <BarChart
-        labels={professionals.map(p => `${p.firstName} ${p.lastName}`)}
+        labels={professionals.map((p) => `${p.firstName} ${p.lastName}`)}
         title="Salary"
-        data={professionals.map(p => p.salary)}
+        data={professionals.map((p) => p.salary)}
         backgroundColors={professionals.map(() => getRandomColor())}
       />
 
       <PieChart
-        labels={professionals.map(p => `${p.firstName} ${p.lastName}`)}
+        labels={professionals.map((p) => `${p.firstName} ${p.lastName}`)}
         title="Years of Experience"
-        data={professionals.map(p => p.yearsOfExperience)}
+        data={professionals.map((p) => p.yearsOfExperience)}
         backgroundColors={professionals.map(() => getRandomColor())}
       />
 
       <PieChart
-        labels={professionals.map(p => `${p.firstName} ${p.lastName}`)}
+        labels={professionals.map((p) => `${p.firstName} ${p.lastName}`)}
         title="Salary"
-        data={professionals.map(p => p.salary)}
+        data={professionals.map((p) => p.salary)}
         backgroundColors={professionals.map(() => getRandomColor())}
       />
-
-
     </div>
   );
 };
