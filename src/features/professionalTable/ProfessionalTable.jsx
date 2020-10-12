@@ -88,14 +88,15 @@ const ProfessionalTableSimple = () => {
             })}
           </tbody>
         </table>
-        <Pagination
-          page={page}
-          perPage={perPage}
-          count={professionalData.length}
-          onChangePage={onChangePage}
-          onChangePerPage={onChangePerPage}
-        />
       </div>
+
+      <Pagination
+        page={page}
+        perPage={perPage}
+        count={professionalData.length}
+        onChangePage={onChangePage}
+        onChangePerPage={onChangePerPage}
+      />
 
       <BarChart
         labels={professionals.map((p) => `${p.firstName} ${p.lastName}`)}

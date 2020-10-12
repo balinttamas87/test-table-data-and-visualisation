@@ -29,7 +29,6 @@ table th {
 
 .table-wrapper {
   min-height: 435px;
-  overflow-x: auto;
 }
 
 .sortable-column {
