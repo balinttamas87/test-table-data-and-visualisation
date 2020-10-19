@@ -30,7 +30,7 @@ Once you have cloned the repo and installed all dependencies running `yarn` you 
 - run `yarn build` which will create a production build of the project and add the service worker defined in `/src/sw-template.js`.
 - install `serve` package globally by running `yarn global add serve`.
 - run / serve the production build via the command `serve -s build`. (The app will run on http://localhost:5000/ ).
-- Open the app on http://localhost:5000/ in incognito mode
+- Open the app on http://localhost:5000/ in **incognito mode**
 - Reload the page to cache the fetch results (assets are already cached at this point, but the fetch request's response is not)
 - Change Network to be offline in the Network tab of Dev Tools or in the Application tab selecting `service-workers` on the left hand-side and clicking the offline checkbox
 - Reload the page. You should see the app working as before. However, this time it should work in offline mode.
