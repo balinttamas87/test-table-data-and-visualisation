@@ -1,3 +1,13 @@
+[To start the project](#to-start-the-project)
+
+[To see the service worker in action](#to-see-the-service-worker-in-action)
+
+[The following has been built or done for this technical test](#the-following-has-been-built-or-done-for-this-technical-test)
+
+[Things that I have experimented with for the first time](#things-that-i-have-experimented-with-for-the-first-time)
+
+[Some things that could be improved or added](#some-things-that-could-be-improved-or-added)
+
 ## To start the project
 
 Clone this repo, `cd` into it and
@@ -14,7 +24,19 @@ To run the tests run
 ### `yarn test --verbose`
 (you might need to hit the letter "a" to run all tests when prompted)
 
-## The following has been built / done for this technical test:
+## To see the service worker in action
+Once you have cloned the repo and installed all dependencies running `yarn` you can try the app in offline-first mode following the below steps.
+
+- run `yarn build` which will create a production build of the project and add the service worker defined in `/src/sw-template.js`.
+- install `serve` package globally by running `yarn global add serve`.
+- run / serve the production build via the command `serve -s build`. (The app will run on http://localhost:5000/ ).
+- Open the app on http://localhost:5000/ in incognito mode
+- Reload the page to cache the fetch results (assets are already cached at this point, but the fetch request's response is not)
+- Change Network to be offline in the Network tab of Dev Tools or in the Application tab selecting `service-workers` on the left hand-side and clicking the offline checkbox
+- Reload the page. You should see the app working as before. However, this time it should work in offline mode.
+
+
+## The following has been built or done for this technical test
 In the following video you can watch the app in action and all its features
 
 https://drive.google.com/file/d/1B0-SD_y1rWydML0aJ6pGiFi3Mh3nC8_D/view?usp=sharing 
@@ -33,7 +55,7 @@ https://drive.google.com/file/d/1B0-SD_y1rWydML0aJ6pGiFi3Mh3nC8_D/view?usp=shari
 - chart.js via react-chartjs-2 library
 
 
-## Some things that could be improved
+## Some things that could be improved or added
 - When sorting a new column by clicking on the table header cell we should always start sorting by the same direction (ascending or descending)
 - Add ability to clear sorting and filtering
 - When sorting empty values should be at the end of the list instead of in the beginning
